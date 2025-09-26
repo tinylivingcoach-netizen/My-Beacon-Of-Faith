@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beacon of Faith</title>
+    <meta name="description" content="Find relevant scriptures for your feelings and reflect on your journey through a private journal. An anchor of hope to guide you through faith in Christ." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💡</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Lora', 'serif'],
+            },
+            colors: {
+              'sea-dark': '#0d1b2a', 
+              'sea-mid': '#1b263b',  
+              'sea-light': '#415a77', 
+              'sand': '#F8F7F4',      
+              'burgundy': '#8D2B3D', 
+              'foam': '#E0E1DD',       
+              'slate': '#778da9',     
+            },
+            boxShadow: {
+              'burgundy-glow': '0 0 15px rgba(141, 43, 61, 0.6), 0 0 5px rgba(141, 43, 61, 0.8)',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeOut: {
+                'from': { opacity: '1' },
+                'to': { opacity: '0', transform: 'scale(0.95)' },
+              },
+              pulseLight: {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.6 },
+              }
+            },
+            animation: {
+              fadeIn: 'fadeIn 0.5s ease-in-out',
+              fadeOut: 'fadeOut 0.3s ease-in-out forwards',
+              pulseLight: 'pulseLight 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-sand dark:bg-sea-dark font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

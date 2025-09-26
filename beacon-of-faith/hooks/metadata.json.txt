@@ -1,0 +1,5 @@
+{
+  "name": "Beacon of Faith",
+  "description": "Find relevant scriptures for your feelings and reflect on your journey through a private journal. An anchor of hope to guide you through faith in Christ.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,107 @@
+import React, { useState } from 'react';
+import { Header } from './components/Header';
+import { ScriptureFinder } from './components/ScriptureFinder';
+import { Journal } from './components/Journal';
+import { Guidance } from './components/Guidance';
+import { IntentionalLiving } from './components/IntentionalLiving';
+
+type View = 'finder' | 'journal' | 'guidance';
+
+const App: React.FC = () => {
+  const [view, setView] = useState<View>('finder');
+  const [prefilledJournalEntry, setPrefilledJournalEntry] = useState<string>('');
+
+  const handleJournalScripture = (scriptureResult: string) => {
+    const parts = scriptureResult.split('::').map(p => p.trim());
+    if (parts.length === 4) {
+      const [reference, text] = parts;
+      const prefillText = `Reflecting on ${reference}:\n\n"${text}"\n\n---\n\nMy thoughts:\n`;
+      setPrefilledJournalEntry(prefillText);
+      setView('journal');
+    }
+  };
+
+  return (
+    <div className="min-h-screen text-sea-dark dark:text-foam bg-sand dark:bg-sea-dark transition-colors duration-500 flex flex-col">
+      <Header />
+      <main className="container mx-auto p-4 md:p-8 flex-grow">
+        <nav className="flex justify-center mb-8">
+          <div className="bg-white/50 dark:bg-sea-mid/50 border border-slate/20 dark:border-sea-light/50 rounded-lg p-1 flex items-center space-x-1 md:space-x-2">
+            <NavButton
+              label="Scripture Finder"
+              isActive={view === 'finder'}
+              onClick={() => setView('finder')}
+            />
+            <NavButton
+              label="Journal"
+              isActive={view === 'journal'}
+              onClick={() => setView('journal')}
+            />
+            <NavButton
+              label="Guidance"
+              isActive={view === 'guidance'}
+              onClick={() => setView('guidance')}
+            />
+          </div>
+        </nav>
+        
+        <div className="animate-fadeIn">
+            {view === 'finder' && <ScriptureFinder onJournalScripture={handleJournalScripture} />}
+            {view === 'journal' && <Journal prefilledEntry={prefilledJournalEntry} onEntryConsumed={() => setPrefilledJournalEntry('')} />}
+            {view === 'guidance' && (
+              <div className="space-y-8">
+                <IntentionalLiving />
+                <Guidance />
+              </div>
+            )}
+        </div>
+      </main>
+      <footer className="text-center p-8 text-sm text-slate dark:text-sea-light border-t border-gray-200 dark:border-sea-light/30">
+        <div className="space-y-4">
+            <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+                <a href="https://ko-fi.com/YourProfile" target="_blank" rel="noopener noreferrer" className="font-semibold text-burgundy hover:underline transition-all">
+                    Support This Ministry
+                </a>
+                <span className="opacity-50 hidden md:inline">|</span>
+                <a href="https://www.LivingLifeTiny.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-burgundy hover:underline transition-all">
+                    Website
+                </a>
+                <span className="opacity-50 hidden md:inline">|</span>
+                <a href="http://www.youtube.com/@LivingLifeHub" target="_blank" rel="noopener noreferrer" className="font-semibold text-burgundy hover:underline transition-all">
+                    YouTube
+                </a>
+                <span className="opacity-50 hidden md:inline">|</span>
+                <a href="mailto:TinyLivingCoach@gmail.com" className="font-semibold text-burgundy hover:underline transition-all">
+                    Contact Me
+                </a>
+            </div>
+            <p className="text-xs opacity-80">&copy; {new Date().getFullYear()} Living Life Tiny. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+interface NavButtonProps {
+    label: string;
+    isActive: boolean;
+    onClick: () => void;
+}
+
+const NavButton: React.FC<NavButtonProps> = ({ label, isActive, onClick }) => {
+    return (
+        <button
+            onClick={onClick}
+            className={`px-3 py-2 text-sm md:text-base font-semibold rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-burgundy/80 ${
+            isActive
+                ? 'bg-burgundy text-sand shadow-burgundy-glow border border-transparent dark:border-white/50'
+                : 'bg-transparent text-sea-dark dark:text-burgundy hover:bg-slate/10 dark:hover:bg-burgundy/10'
+            }`}
+        >
+            {label}
+        </button>
+    );
+};
+
+
+export default App;

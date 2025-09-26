@@ -1,0 +1,35 @@
+import React from 'react';
+
+const Section: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
+    <div className="mb-8">
+        <h3 className="text-2xl font-bold text-burgundy mb-3">{title}</h3>
+        <p className="text-lg text-slate dark:text-slate leading-relaxed">
+            {children}
+        </p>
+    </div>
+);
+
+export const IntentionalLiving: React.FC = () => {
+  return (
+    <div className="w-full max-w-3xl mx-auto text-left bg-gray-50 dark:bg-sea-mid/50 p-6 md:p-8 rounded-lg border border-gray-200 dark:border-white/40">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-sea-dark dark:text-foam">Our Mission</h2>
+      <p className="mb-8 text-center text-slate dark:text-slate text-lg italic">
+        "Walk in the light, as He is in the light." - 1 John 1:7
+      </p>
+
+      <div className="space-y-6">
+        <Section title="Live Intentionally">
+            To live intentionally is to make conscious choices that align with our faith. It's about moving beyond simply existing and actively participating in the beautiful story God is writing for our lives, making every decision an opportunity to reflect His light.
+        </Section>
+
+        <Section title="Seek Intentionally">
+            A deep relationship with God requires pursuit. To seek intentionally is to carve out time for prayer, immerse ourselves in His Word, and listen for His voice. This active search for wisdom brings us closer to our Creator, who is always ready to reveal His path.
+        </Section>
+
+        <Section title="Love Intentionally">
+            Love is the ultimate reflection of Christ in us. To love intentionally is to make a deliberate choice to show compassion, kindness, and grace. Through our service, forgiveness, and encouragement, we become beacons of His light, guiding others toward the hope we have found in Him.
+        </section>
+      </div>
+    </div>
+  );
+};
